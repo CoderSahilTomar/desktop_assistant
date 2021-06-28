@@ -1,6 +1,10 @@
 import pyttsx3 as tts
 import datetime
 import speech_recognition as sr
+import wikipedia
+import webbrowser
+from googlesearch import search
+
 
 
 engine = tts.init("sapi5")
@@ -34,13 +38,11 @@ def TakeCommand():
         query = r.recognize_google(audio,language='en-in')
         print(f"Speech: {query}\n")
         return query
-    except sr.WaitTimeoutError as e:
-        speak("Wait Timeout Error\nNo input recieved")
-        speak("Say that again please.")
     except Exception as e:
         speak('An unknown error occured')
         speak("Say that again please.")
-    
+        query = "None"
+        return query
 
 
 
@@ -50,4 +52,35 @@ def TakeCommand():
 
 if __name__ == '__main__':
     greetMe()
-    TakeCommand()
+    while True:
+        query = TakeCommand().lower()
+        if 'wikipedia' in query:
+            query = query.replace("wikipedia","")
+            results = wikipedia.summary(query,sentences = 3)
+            speak('According to Wikipedia....')
+            speak(results)
+        elif 'open youtube' in query:
+            webbrowser.open(
+                url ="https://www.youtube.com/")
+        elif 'search google for' in query:
+            query =  query.replace('search google for ','')
+            speak(f'Searching Google for {query}')
+            for i in search(query):
+                site = i
+                break
+            webbrowser.open(site)
+        elif 'take mock test' in query:
+            webbrowser.open('https://www.onlinetestseries.in/allenkota/login')
+        elif "check test schedule" in query:
+            webbrowser.open('https://mypat.in/')
+        elif "take custom test" in query:
+            webbrowser.open('https://fiitjee-meerut.mypat.in/')
+        elif "open bootstrap" in query:
+            webbrowser.open('https://getbootstrap.com/')
+        elif "open github" in query:
+            webbrowser.open('https://github.com/')
+        elif "open stackoverflow" in query:
+            webbrowser.open('www.stackoverflow.com')
+        elif "open google" in query:
+            webbrowser.open('www.google.com')
+        elif ""
