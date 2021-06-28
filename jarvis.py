@@ -39,6 +39,7 @@ def TakeCommand():
         print(f"Speech: {query}\n")
         return query
     except Exception as e:
+        print(e)
         speak('An unknown error occured')
         speak("Say that again please.")
         query = "None"
@@ -83,5 +84,3 @@ if __name__ == '__main__':
             webbrowser.open('www.stackoverflow.com')
         elif "open google" in query:
             webbrowser.open('www.google.com')
-        elif query == 'exit assistant':
-            quit()
