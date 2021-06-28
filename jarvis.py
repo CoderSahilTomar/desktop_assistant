@@ -4,6 +4,7 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 from googlesearch import search
+import os
 
 
 
@@ -84,3 +85,14 @@ if __name__ == '__main__':
             webbrowser.open('www.stackoverflow.com')
         elif "open google" in query:
             webbrowser.open('www.google.com')
+        elif "the time" in query:
+            strTime = datetime.datetime.now().strftime('%H:%M:%S')
+            speak("The time is :")
+            speak(strTime)
+        elif "open code" in query:
+            codepath = 'C:\\Users\\hp\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\Visual Studio Code.lnk'
+            os.startfile(codepath)
+        elif "open sublime text" in query:
+            sublimepath = 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Sublime Text 3.lnk'
+            os.startfile(sublimepath)
+            
