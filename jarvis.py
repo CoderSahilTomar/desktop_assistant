@@ -83,4 +83,3 @@ if __name__ == '__main__':
             webbrowser.open('www.stackoverflow.com')
         elif "open google" in query:
             webbrowser.open('www.google.com')
-        elif ""
